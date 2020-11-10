@@ -5,7 +5,7 @@ module Instructions
   def introductions
     puts 'Welcome to dev.to webscraper. This CLI tool gathered articles based on the hashtag provides'
     puts 'If you want to quit, simple type (q) the next time you are prompted to enter a value'
-    puts 'Please provide a hashtag to continue.'
+    puts 'Please provide a hashtag to continue..'
     puts ''
   end
 
@@ -47,16 +47,16 @@ class Scraper
     if articles.empty?
       puts "No article for for hashtag: #{hashtag}"
     else
-      articles.do | section |
+      articles.do |section|
         title_and_author = section.search('h1.fs-3xl s:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight', 'a.crayons-link')
       info.push({
                   title: title_and_author[0].text.gsub(/\n/, '').strip.gsub(/\s+/, ' '),
                   author: title_and_author[1].text.gsub(/\n/, '').strip.gsub(/\s+/, ' ')
                 })
     end
+    puts info
+    get_input
   end
-  puts info
-  get_input
 end
 
 Scraper.introductions
