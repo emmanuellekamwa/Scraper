@@ -1,34 +1,63 @@
 require 'nokogiri'
 require 'httparty'
-require 'open-uri'
 
-class Scraper
-  attr_accessor :@parse_page
-  def initialize
-    doc = HTTParty.get('http://store.nike.com/us/en_us/pw/mens-nikeid-lifestyle-shoes/1k9Z7puZoneZoi3')
-    @parse_page ||= nokogiri::HTML(doc)
+module Instructions
+  def introductions
+    puts 'Welcome to dev.to webscraper. This CLI tool gathered articles based on the hashtag provides'
+    puts 'If you want to quit, simple type (q) the next time you are prompted to enter a value'
+    puts 'Please provide a hashtag to continue.'
+    puts ''
   end
 
-  def names
-    item_container.css('.product-card-title').css('div').children.map(&:text).compact
+  def quit_message
+    puts 'You have quit the scraper'
   end
 
-  def prices
-    item_container.css('.product-price').css('div').children.map(&:text).compact
-  end
-
-  private
-
-  def item_container
-    parse_page.css('.product-grid-info')
-  end
-
-  scraper = Scraper.new
-  names = scraper.get_names
-  prices = scraper.get_prices
-
-  (0...prices.size).each do |index|
-    puts "--- index: #{index + 1} ---"
-    puts "Name: #{names[index]} | price: #{prices[index]}"
+  def invalid_entry
+    puts 'Your entry is invalid, try again'
   end
 end
+
+class Scraper
+  extend Instructions
+
+  def self.input
+    user_input = gets.chomp
+    get_hashtag(user_input)
+  end
+
+  def self.get_hashtag(user_input)
+    if user_input == 'q'
+      quit_message
+    elsif user_input.empty?
+      invalid_entry
+      get_input
+    else
+      scrape_data(user_input.to_s)
+    end
+  end
+
+  def self.scrape_data(hashtag)
+    url = "https://dev.to/t/#{hashtag}"
+    puts 'getting data ...'
+    html = HTTParty.get(url)
+    response = Nokogiri::HTML(html)
+    info = []
+    articles = response.css('.crayons-article__header__meta')
+    if articles.empty?
+      puts "No article for for hashtag: #{hashtag}"
+    else
+      articles.do | section |
+        title_and_author = section.search('h1.fs-3xl s:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight', 'a.crayons-link')
+      info.push({
+                  title: title_and_author[0].text.gsub(/\n/, '').strip.gsub(/\s+/, ' '),
+                  author: title_and_author[1].text.gsub(/\n/, '').strip.gsub(/\s+/, ' ')
+                })
+    end
+  end
+  puts info
+  get_input
+end
+
+Scraper.introductions
+Scraper.get_input
