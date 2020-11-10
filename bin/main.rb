@@ -1,6 +1,10 @@
-#!/usr/bin/env ruby
 require_relative '../lib/scraper'
+scraper = Scraper.new
+names = scraper.names
+prices = scraper.prices
+puts 'names', names
 
-sample = Scraper.new
-
-sample.run
+(0...prices.size).each do |index|
+  puts "--- index: #{index + 1}---"
+  puts "Name: #{names[index]} | price: #{prices[index]}"
+end
