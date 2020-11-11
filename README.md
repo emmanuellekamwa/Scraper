@@ -28,9 +28,9 @@ The code has been tested using:
 
 👤 Kamwa Emmanuelle Alix
 
--   Github: @emmanuellekamwa
--   Twitter: @AlixKamwa
--   Linkedin: emmanuelle-kamwa
+-   Github:[@emmanuellekamwa](https://github.com/emmanuellekamwa)
+-   Twitter: [@AlixKamwa](https://twitter.com/AlixKamwa)
+-   Linkedin: [emmanuelle-kamwa](https://linkedin.com/in/emmanuelle-kamwa-86145a1a4/)
 
 ## Show Some Support
 
