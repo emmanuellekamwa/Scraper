@@ -36,14 +36,15 @@ The code has been tested using:
 
 Give a ⭐️ if you like this project!
 
-🤝 Contributing
+##🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
 ## Acknowledgement
 
 -   Microverse
+-   Odin Project
 
-📝 License
+##📝 License
 
 This project is MIT licensed.
