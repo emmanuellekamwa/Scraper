@@ -3,6 +3,7 @@ require 'nokogiri'
 
 class Scraper
   attr_reader :parse_page
+
   def initialize
     url = 'https://www.nike.com/w/new-3n82y'
     doc = HTTParty.get(url).body
