@@ -2,6 +2,7 @@ require 'httparty'
 require 'nokogiri'
 
 class Scraper
+  attr_reader :parse_page
   def initialize
     url = 'https://www.nike.com/w/new-3n82y'
     doc = HTTParty.get(url).body
@@ -9,11 +10,11 @@ class Scraper
   end
 
   def names
-    item_container.css('.product-card_body').children.map(&:text).compact
+    item_container.css('.product-card__title').children.map(&:text).compact
   end
 
   def prices
-    item_container.css('.product-card').children.map(&:text).compact
+    item_container.css('.product-price').children.map(&:text).compact
   end
 
   private
