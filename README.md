@@ -36,7 +36,7 @@ The code has been tested using:
 
 Give a ⭐️ if you like this project!
 
-##🤝 Contributing
+## Contributing
 
 Contributions, issues and feature requests are welcome!
 
@@ -45,6 +45,6 @@ Contributions, issues and feature requests are welcome!
 -   Microverse
 -   Odin Project
 
-##📝 License
+## License
 
 This project is MIT licensed.
