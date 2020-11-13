@@ -1,4 +1,5 @@
 require 'rspec'
+require 'httparty'
 require_relative '../lib/scraper'
 describe Scraper do
   let(:scraper) { Scraper.new }
