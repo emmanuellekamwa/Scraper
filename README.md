@@ -24,6 +24,12 @@ The code has been tested using:
 -   After cloning, run cd Scraper to have access to the folder
 -   Finally, run ruby bin/main.rb to deploy the scraper
 
+## Testing the Code
+
+-   gem install Rspec
+-   Rsepc --init
+-   Rspec
+
 ## Author
 
 👤 Kamwa Emmanuelle Alix
